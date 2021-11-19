@@ -7,6 +7,5 @@ import scrapy
 
 
 class NaraItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+    info_columns = scrapy.Field();
+    detail_columns = scrapy.Field();
