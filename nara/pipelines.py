@@ -6,8 +6,15 @@
 
 # useful for handling different item types with a single interface
 from itemadapter import ItemAdapter
-
+from scrapy.exceptions import DropItem
 
 class NaraPipeline:
+    columns = []
+
     def process_item(self, item, spider):
-        return item
+        if item in self.columns:
+            raise DropItem('Already exists')
+        else:
+            self.columns.append(item)
+            print(item, ' added!')
+            return item
