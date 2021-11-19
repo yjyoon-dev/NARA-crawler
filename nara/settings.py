@@ -18,9 +18,10 @@ NEWSPIDER_MODULE = 'nara.spiders'
 
 # Obey robots.txt rules
 ROBOTSTXT_OBEY = True
+LOG_FILE='log.txt'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
-#CONCURRENT_REQUESTS = 32
+CONCURRENT_REQUESTS = 32
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
@@ -62,9 +63,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'nara.pipelines.NaraPipeline': 300,
-#}
+ITEM_PIPELINES = {
+    'nara.pipelines.NaraPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
