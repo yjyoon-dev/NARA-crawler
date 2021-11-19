@@ -1,3 +1,4 @@
 .vscode
+nara/__pycache__
 *.csv
 log.txt
