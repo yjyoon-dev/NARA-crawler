@@ -7,5 +7,16 @@ import scrapy
 
 
 class NaraItem(scrapy.Item):
-    info_columns = scrapy.Field();
-    detail_columns = scrapy.Field();
+    NAID = scrapy.Field()
+    URL = scrapy.Field()
+    Title = scrapy.Field()
+    Local_Identifier = scrapy.Field()
+    Creators = scrapy.Field()
+    From = scrapy.Field()
+    Level_of_Description = scrapy.Field()
+    Types_of_Archival_Materials = scrapy.Field()
+    The_creator_compiled_or_maintained_the_series_between = scrapy.Field()
+    Access_Restrictions = scrapy.Field()
+    Use_Restrictions = scrapy.Field()
+    Shot_List = scrapy.Field()
+    Scope_and_Content = scrapy.Field()

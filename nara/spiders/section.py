@@ -4,13 +4,13 @@ import json
 from scrapy.selector import Selector
 from nara.items import NaraItem
 
-class ColumnSpider(scrapy.Spider):
-    name = 'column'
+class SectionSpider(scrapy.Spider):
+    name = 'section'
     allowed_domains = ['catalog.archives.gov/id']
     base_url = 'https://catalog.archives.gov/OpaAPI/iapi/v1/id/'
 
     def start_requests(self):
-        na_id = 1676000
+        na_id = 1
 
         while True:
             if na_id % 100 == 0: print('Current ID: ', na_id)
@@ -23,19 +23,10 @@ class ColumnSpider(scrapy.Spider):
         json_response = json.loads(response.text)
 
         html = Selector(text=json_response['opaResponse']['content']['description'])
+        
+        sections = [' '.join(el.get().split()) for el in html.css('div.panel-heading span.panel-title a::text')]
 
-        info_columns = [el.get() for el in html.css('div#additionalInfo span.text-right *::text')]
-        detail_columns = [el.get() for el in html.css('div#details div.col-xs-4.text-right *::text')]
-
-        for column in info_columns:
+        for section in sections:
             item = NaraItem()
-            item['info_columns'] = column[:-1].replace('\n                           ','')
+            item['sections'] = section
             yield item
-
-        for column in detail_columns:
-            item = NaraItem()
-            item['detail_columns'] = column[:-1].replace('\n                           ','')
-            yield item
-
-    
-

@@ -23,6 +23,22 @@ LOG_FILE='log.txt'
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 CONCURRENT_REQUESTS = 32
 
+FEED_EXPORT_FIELDS=[
+    'NAID',
+    'Title',
+    'Local_Identifier',
+    'Creators',
+    'From',
+    'Level_of_Description',
+    'Types_of_Archival_Materials',
+    'The_creator_compiled_or_maintained_the_series_between',
+    'Access_Restrictions',
+    'Use_Restrictions',
+    'Shot_List',
+    'Scope_and_Content',
+    'URL'
+]
+
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
