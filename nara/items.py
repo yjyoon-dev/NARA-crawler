@@ -20,3 +20,7 @@ class NaraItem(scrapy.Item):
     Use_Restrictions = scrapy.Field()
     Shot_List = scrapy.Field()
     Scope_and_Content = scrapy.Field()
+    
+    # Download images
+    image_urls = scrapy.Field()
+    images = scrapy.Field()

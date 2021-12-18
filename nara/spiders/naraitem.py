@@ -87,11 +87,23 @@ class NaraitemSpider(scrapy.Spider):
                 item[column] = value
 
         # Shot list
-        shot_list = [el.get() for el in html.css('div#shotList span.text-left::text')]
-        if len(shot_list) > 0: item['Shot_List'] = shot_list[0]
+        shot_list = [' '.join(el.get().split()) for el in html.css('div#shotList span.text-left::text')]
+        if len(shot_list) > 0: item['Shot_List'] = shot_list[0].replace(',','')
 
         # Scope & Content
-        scope_content = [el.get() for el in html.css('div#scopeContent span.text-left::text')]
-        if len(scope_content) > 0: item['Scope_and_Content'] = scope_content[0]
+        scope_content = [' '.join(el.get().split()) for el in html.css('div#scopeContent span.text-left::text')]
+        if len(scope_content) > 0: item['Scope_and_Content'] = scope_content[0].replace(',','')
+
+        # Images
+        images = json_response['opaResponse']['content']['objects']['objects']['object']
+
+        if images is not None:
+            image_urls = []
+            for image in images:
+                image_url = image['file']['@url']
+                image_urls.append(image_url)
+
+            item['image_urls'] = image_urls
+
 
         yield item

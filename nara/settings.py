@@ -39,6 +39,9 @@ FEED_EXPORT_FIELDS=[
     'URL'
 ]
 
+IMAGES_STORE = 'images'
+ITEM_PIPELINES = {'nara.pipelines.ImageFilesPipeline' : 1}
+
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
 # See also autothrottle settings and docs
@@ -79,9 +82,6 @@ FEED_EXPORT_FIELDS=[
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-ITEM_PIPELINES = {
-    'nara.pipelines.NaraPipeline': 300,
-}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html
