@@ -27,8 +27,8 @@ class NaraitemSpider(scrapy.Spider):
     def start_requests(self):
         na_id = 1
 
-        while na_id <= 100000:
-            if na_id % 100 == 0: print('Current ID: ', na_id)
+        while na_id <= 50000:
+            if na_id % 100 == 0: print('Crawling ' + str(na_id) + ' ~ ' + str(na_id+100) + '...')
             yield scrapy.Request(url=self.base_url+str(na_id), callback=self.parse)
             na_id += 1
 
@@ -95,13 +95,16 @@ class NaraitemSpider(scrapy.Spider):
         if len(scope_content) > 0: item['Scope_and_Content'] = scope_content[0].replace(',','')
 
         # Images
-        images = json_response['opaResponse']['content']['objects']['objects']['object']
+        objects = json_response['opaResponse']['content']['objects']
 
-        if images is not None:
+        if objects is not None:
+            images = objects['objects']['object']
+            
             image_urls = []
             for image in images:
-                image_url = image['file']['@url']
-                image_urls.append(image_url)
+                if image['file']['@mime'] == 'image/jpeg':
+                    image_url = image['thumbnail']['@url']
+                    image_urls.append(image_url)
 
             item['image_urls'] = image_urls
 

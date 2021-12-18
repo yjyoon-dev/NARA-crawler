@@ -40,7 +40,7 @@ FEED_EXPORT_FIELDS=[
 ]
 
 IMAGES_STORE = 'images'
-ITEM_PIPELINES = {'nara.pipelines.ImageFilesPipeline' : 1}
+ITEM_PIPELINES = {'nara.pipelines.ImageFilesPipeline' : 300}
 
 # Configure a delay for requests for the same website (default: 0)
 # See https://docs.scrapy.org/en/latest/topics/settings.html#download-delay
